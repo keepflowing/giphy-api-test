@@ -13,11 +13,10 @@ const fetchImg = async (thing) => {
   img.classList.add('loading');
   img.src = 'load.gif';
   const response = await fetch(fullUrl, {mode: 'cors'});
-  response.json().then(function(response) {
-    img.classList.remove('loading');
-    img.src = '';
-    img.src = response.data.images.original.url;
-  });
+  const imgData = await response.json();
+  img.classList.remove('loading');
+  img.src = '';
+  img.src = imgData.data.images.original.url;
 }
 
 form.addEventListener('submit', (e) => {
